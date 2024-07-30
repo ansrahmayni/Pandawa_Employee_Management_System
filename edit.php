@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
 <body>
     <h1>Edit Karyawan</h1>
 
-    <form action="show_employees.php" method="post">
+    <form action="" method="post">
         <input type="hidden" name="id" value="<?php echo $employee['id']; ?>">
         <div class="part1">
             <label>Nama:</label> <input type="text" name="name" value="<?php echo $employee['name']; ?>"><br>
@@ -80,7 +80,8 @@ if (isset($_GET['id'])) {
                 <label for="uk_sepatu">Ukuran Sepatu:</label> <input type="text" name="uk_sepatu" class="uk_pakaian" value="<?php echo $employee['uk_sepatu']; ?>"><br>
             </div>
 
-            <button type="submit" class="button">update</button>
+            <button type="submit" name="update" class="button">Update</button>
+            
         </div>
     </form>
 
