@@ -80,6 +80,15 @@ if (isset($_GET['id'])) {
                 <label for="uk_sepatu">Ukuran Sepatu:</label> <input type="text" name="uk_sepatu" class="uk_pakaian" value="<?php echo $employee['uk_sepatu']; ?>"><br>
             </div>
 
+            <label>Foto KTP:</label><br>
+                <input type="file" name="ktp_photo" accept="image/*" class="foto" id="ktp" required>
+                
+                <label>Foto KK:</label><br>
+                <input type="file" name="kk_photo" accept="image/*" class="foto" id="kk" required>
+                
+                <label>Foto Ijazah:</label><br>
+                <input type="file" name="ijazah_photo" accept="image/*" class="foto" id="ijazah" required>
+
             <button type="submit" name="update" class="button">Update</button>
             
         </div>
