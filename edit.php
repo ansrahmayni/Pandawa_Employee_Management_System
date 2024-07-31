@@ -14,10 +14,40 @@ if (isset($_POST['update'])) {
     $uk_baju = $_POST['uk_baju'];
     $uk_celana = $_POST['uk_celana'];
     $uk_sepatu = $_POST['uk_sepatu'];
+
+    // Handle file uploads
+    $ktp_photo = !empty($_FILES['ktp_photo']['name']) ? $_FILES['ktp_photo']['name'] : $_POST['existing_ktp_photo'];
+    $kk_photo = !empty($_FILES['kk_photo']['name']) ? $_FILES['kk_photo']['name'] : $_POST['existing_kk_photo'];
+    $ijazah_photo = !empty($_FILES['ijazah_photo']['name']) ? $_FILES['ijazah_photo']['name'] : $_POST['existing_ijazah_photo'];
+
+    $upload_dir = "upload/";
+
+    // Upload files if new files are provided
+    if (!empty($_FILES['ktp_photo']['name'])) {
+        if (move_uploaded_file($_FILES['ktp_photo']['tmp_name'], $upload_dir . $_FILES['ktp_photo']['name'])) {
+            $ktp_photo = $_FILES['ktp_photo']['name'];
+        } else {
+            echo "Error uploading KTP photo.";
+        }
+    }
+    if (!empty($_FILES['kk_photo']['name'])) {
+        if (move_uploaded_file($_FILES['kk_photo']['tmp_name'], $upload_dir . $_FILES['kk_photo']['name'])) {
+            $kk_photo = $_FILES['kk_photo']['name'];
+        } else {
+            echo "Error uploading KK photo.";
+        }
+    }
+    if (!empty($_FILES['ijazah_photo']['name'])) {
+        if (move_uploaded_file($_FILES['ijazah_photo']['tmp_name'], $upload_dir . $_FILES['ijazah_photo']['name'])) {
+            $ijazah_photo = $_FILES['ijazah_photo']['name'];
+        } else {
+            echo "Error uploading Ijazah photo.";
+        }
+    }
     
-    $sql = "UPDATE employees SET name = ?, email = ?, no_hp = ?, alamat = ?, tgl_masuk = ?, nama_bank = ?, no_rek = ?, no_bpjs = ?, uk_baju = ?, uk_celana = ?, uk_sepatu = ? WHERE id = ?";
+    $sql = "UPDATE employees SET name = ?, email = ?, no_hp = ?, alamat = ?, tgl_masuk = ?, nama_bank = ?, no_rek = ?, no_bpjs = ?, uk_baju = ?, uk_celana = ?, uk_sepatu = ?, ktp_photo = ?, kk_photo = ?, ijazah_photo = ? WHERE id = ?";
     $stmt = $pdo->prepare($sql);
-    if ($stmt->execute([$name, $email, $no_hp, $alamat, $tgl_masuk, $nama_bank, $no_rek, $no_bpjs, $uk_baju, $uk_celana, $uk_sepatu, $id])) {
+    if ($stmt->execute([$name, $email, $no_hp, $alamat, $tgl_masuk, $nama_bank, $no_rek, $no_bpjs, $uk_baju, $uk_celana, $uk_sepatu, $ktp_photo, $kk_photo, $ijazah_photo, $id])) {
         header("Location: show_employees.php?success=1");
     } else { 
         echo "Error updating record: " . print_r($stmt->errorInfo(), true);
@@ -41,7 +71,7 @@ if (isset($_GET['id'])) {
 <body>
     <h1>Edit Karyawan</h1>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $employee['id']; ?>">
         <div class="part1">
             <label>Nama:</label> <input type="text" name="name" value="<?php echo $employee['name']; ?>"><br>
@@ -81,13 +111,27 @@ if (isset($_GET['id'])) {
             </div>
 
             <label>Foto KTP:</label><br>
-                <input type="file" name="ktp_photo" accept="image/*" class="foto" id="ktp" required>
-                
-                <label>Foto KK:</label><br>
-                <input type="file" name="kk_photo" accept="image/*" class="foto" id="kk" required>
-                
-                <label>Foto Ijazah:</label><br>
-                <input type="file" name="ijazah_photo" accept="image/*" class="foto" id="ijazah" required>
+            <?php if ($employee['ktp_photo']): ?>
+                <img src="upload/<?php echo $employee['ktp_photo']; ?>" alt="Foto KTP" width="100"><br>
+                <input type="hidden" name="existing_ktp_photo" value="<?php echo $employee['ktp_photo']; ?>">
+            <?php endif; ?>
+            <input type="file" name="ktp_photo" accept="image/*"><br><br>
+            
+            <label>Foto KK:</label><br>
+            <?php if ($employee['kk_photo']): ?>
+                <img src="upload/<?php echo $employee['kk_photo']; ?>" alt="Foto KK" width="100"><br>
+                <input type="hidden" name="existing_kk_photo" value="<?php echo $employee['kk_photo']; ?>">
+            <?php endif; ?>
+            <input type="file" name="kk_photo" accept="image/*"><br><br>
+            
+            <label>Foto Ijazah:</label><br>
+            <?php if ($employee['ijazah_photo']): ?>
+                <img src="upload/<?php echo $employee['ijazah_photo']; ?>" alt="Foto Ijazah" width="100"><br>
+                <input type="hidden" name="existing_ijazah_photo" value="<?php echo $employee['ijazah_photo']; ?>">
+            <?php endif; ?>
+            <input type="file" name="ijazah_photo" accept="image/*"><br><br>
+
+           
 
             <button type="submit" name="update" class="button">Update</button>
             
