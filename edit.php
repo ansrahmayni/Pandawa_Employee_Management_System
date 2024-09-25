@@ -110,6 +110,7 @@ if (isset($_GET['id'])) {
                 <label for="uk_sepatu">Ukuran Sepatu:</label> <input type="text" name="uk_sepatu" class="uk_pakaian" value="<?php echo $employee['uk_sepatu']; ?>"><br>
             </div>
 
+            <div class="part2"></div>
             <label>Foto KTP:</label><br>
             <?php if ($employee['ktp_photo']): ?>
                 <img src="upload/<?php echo $employee['ktp_photo']; ?>" alt="Foto KTP" width="100"><br>
