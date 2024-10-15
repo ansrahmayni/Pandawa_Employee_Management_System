@@ -12,12 +12,12 @@
 
     <h1>Pandawa</h1>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur corrupti dolorem repellat pariatur nulla ipsa voluptates, optio ab, explicabo odit exercitationem nemo! Corporis aliquid similique ad, officiis ut cupiditate repudiandae.</p>
+    <p>Program ini berfungsi untuk menambahkan dan menyimpan data-data karyawan dan proyek PT. Sandika Kurnia Permata.</p>
     <br><br>
 
     <div class="btn">
         <a href="pengisian_data.php" class="btn-form">Tambah Karyawan</a>
-        <a href="pengisian_data.php" class="btn-form">Tambah Project</a>
+        <a href="form_project.php" class="btn-form">Tambah Project</a>
     </div>
 </body>
 <style>
@@ -55,8 +55,8 @@
     }
 
     .btn-form{
-        background-color: rgba(253, 216, 53, 1);
-        color: #000;
+        background-color: #153448;
+        color: #DFD0B8;
         padding: 25px 40px;
         border: none;
         margin: 0px 20px;
@@ -68,7 +68,7 @@
     }
 
     .btn-form:hover{
-        background-color: #FBC02D;
+        background-color: #3C5B6F;
         font-weight: bold;
         display: ;
     }

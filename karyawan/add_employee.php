@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $kk_photo = $_FILES['kk_photo']['name'];
     $ijazah_photo = $_FILES['ijazah_photo']['name'];
 
-    $target_dir = "upload/";
+    $target_dir = "../uploads/employees";
     $ktp_target = $target_dir . basename($ktp_photo);
     $kk_target = $target_dir . basename($kk_photo);
     $ijazah_target = $target_dir . basename($ijazah_photo);
@@ -50,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ':ijazah_photo' => $ijazah_photo
     ]);
 
-    header('Location: show_employees.php?success=1');
+    header('Location: ../karyawan/show_employees.php?success=1');
     exit();
 }
