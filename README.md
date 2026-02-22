@@ -1,25 +1,63 @@
-#Pandawa Employee Management System
+# Pandawa Employee Management System
 
-Pandawa Employee Management System merupakan aplikasi berbasis web yang dikembangkan selama menjalani Praktik Kerja Lapangan (PKL). Sistem ini dirancang untuk membantu proses pengelolaan data karyawan secara lebih terstruktur, terdokumentasi, dan efisien dibandingkan pencatatan manual.
+This is a web-based employee management system built using PHP, MySQL, and HTML/CSS.
+The application was developed during my Internship (Praktik Kerja Lapangan) to support structured and efficient employee data management.
 
-Aplikasi ini memungkinkan administrator untuk menginput dan menyimpan data karyawan secara lengkap, meliputi informasi pribadi, kontak, tanggal bergabung, data perbankan, nomor BPJS, gender, ukuran pakaian, serta unggahan dokumen pendukung seperti KTP, Kartu Keluarga, dan ijazah.
+## Features
 
-#Fitur Utama
+- Add and manage employee data
+- Upload employee documents (KTP, KK, Diploma)
+- Form validation for data consistency
+- Database integration using MySQL
+- Simple and user-friendly interface
 
-Penambahan dan pengelolaan data karyawan
-Upload dan penyimpanan dokumen identitas (KTP, KK, Ijazah)
-Validasi input untuk menjaga konsistensi data
-Integrasi dengan database MySQL
-UI sederhana dan mudah digunakan
+## Tech Stack
 
-#Teknologi yang Digunakan
+- PHP
+- MySQL
+- HTML
+- CSS
+- XAMPP (Local Development)
 
-PHP
-MySQL
-HTML & CSS
-XAMPP sebagai server pengembangan lokal
+## Installation
 
-#Latar Belakang Pengembangan
+To set up and run this project locally, follow these steps:
 
-Proyek ini dikembangkan sebagai bentuk implementasi sistem administrasi karyawan berbasis web dalam lingkungan kerja nyata. Tujuan utama pengembangan adalah mendukung digitalisasi pengelolaan data agar lebih rapi, mudah diakses, dan terorganisir.
+1. Clone the repository:
 
+```
+git clone https://github.com/username/pandawa-employee-management-system.git 
+cd pandawa-employee-management-system
+```
+
+2. Create a new database in MySQL.
+3. Import the database.sql file into your database.
+4. Configure your database connection in config.php:
+
+```
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "employee_managements";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+```
+
+## Project Structure
+
+```index.php``` – Main page
+```add_employee.php``` – Add employee form
+```display.php``` – Display employee data
+```config.php``` – Database configuration
+```uploads/``` – Uploaded document storage
+```styles.css``` – Styling file
+
+## Project Background
+
+This project was developed during my internship to help digitize employee data management. It replaces manual record-keeping with a structured web-based system and demonstrates backend integration, file handling, and database management implementation.
